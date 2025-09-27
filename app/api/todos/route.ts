@@ -2,19 +2,22 @@
 
 
 import { NextResponse } from "next/server";
-import {Prisma} from '@/lib/prisma';
+import {prisma} from '@/lib/prisma';
 
 
 // Fet todo lists
 export async function GET(){
-    const todos = await Prisma.todo.findMany({oderBy:{id:"desc"}});
+    const todos = await prisma.todo.findMany({
+        orderBy:{id:"desc"}
+    });
     return NextResponse.json(todos);
 }
 
 // Create todo
 export async function POST(req:Request){
     const body = await req.json();
-    const newTodo = await Prisma.todo.create({
+    console.log(body);  
+    const newTodo = await prisma.todo.create({
         data:{
             title:body.title
         }
