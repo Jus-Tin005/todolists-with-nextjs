@@ -3,7 +3,10 @@
 "use strict";
 
 // Todo UI
-__turbopack_context__.s([
+/*
+Marked "use client" at top → ensures isolated hydration.
+No server–client mismatch, because Home renders only static markup and <Todo /> hydrates separately.
+*/ __turbopack_context__.s([
     "default",
     ()=>Todo
 ]);
@@ -19,17 +22,20 @@ function Todo() {
     const [newTitle, setNewTitle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [editId, setEditId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [editTitle, setEditTitle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     // Fetch todo
     async function fetchTodos() {
         const res = await fetch("/api/todos");
         const data = await res.json();
         setTodos(data);
+        setLoading(false);
     }
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Todo.useEffect": ()=>{
             fetchTodos();
         }
     }["Todo.useEffect"], []);
+    // if(loading) return (<Loading/>);
     // Create todo
     async function addTodo() {
         if (!newTitle.trim()) return;
@@ -76,7 +82,7 @@ function Todo() {
                 children: "📝 Todo List"
             }, void 0, false, {
                 fileName: "[project]/app/todo/page.tsx",
-                lineNumber: 69,
+                lineNumber: 80,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -88,7 +94,7 @@ function Todo() {
                         placeholder: "New task..."
                     }, void 0, false, {
                         fileName: "[project]/app/todo/page.tsx",
-                        lineNumber: 73,
+                        lineNumber: 84,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -97,13 +103,13 @@ function Todo() {
                         children: "Add"
                     }, void 0, false, {
                         fileName: "[project]/app/todo/page.tsx",
-                        lineNumber: 74,
+                        lineNumber: 85,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/todo/page.tsx",
-                lineNumber: 72,
+                lineNumber: 83,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -116,7 +122,7 @@ function Todo() {
                                     onChange: (e)=>setEditTitle(e.target.value)
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 87,
+                                    lineNumber: 98,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -125,7 +131,7 @@ function Todo() {
                                     children: "Save"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 88,
+                                    lineNumber: 99,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -134,7 +140,7 @@ function Todo() {
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 89,
+                                    lineNumber: 100,
                                     columnNumber: 41
                                 }, this)
                             ]
@@ -144,7 +150,7 @@ function Todo() {
                                     children: todo.title
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 95,
+                                    lineNumber: 106,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -156,7 +162,7 @@ function Todo() {
                                     children: "Edit"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 96,
+                                    lineNumber: 107,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -165,29 +171,29 @@ function Todo() {
                                     children: "Delete"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 101,
+                                    lineNumber: 112,
                                     columnNumber: 41
                                 }, this)
                             ]
                         }, void 0, true)
                     }, todo.id, false, {
                         fileName: "[project]/app/todo/page.tsx",
-                        lineNumber: 81,
+                        lineNumber: 92,
                         columnNumber: 29
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/app/todo/page.tsx",
-                lineNumber: 78,
+                lineNumber: 89,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/todo/page.tsx",
-        lineNumber: 68,
+        lineNumber: 79,
         columnNumber: 9
     }, this);
 }
-_s(Todo, "ntNLHFom8ZZLjirELCkfgopRVOs=");
+_s(Todo, "NLwtzjc3O75TEqrL9z5lw/OdFoM=");
 _c = Todo;
 var _c;
 __turbopack_context__.k.register(_c, "Todo");

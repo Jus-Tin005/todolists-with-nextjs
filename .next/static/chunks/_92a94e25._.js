@@ -1,17 +1,51 @@
 (globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/app/todo/loading.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+// smooth SSR-to-client transitions (prevents flickering)
+__turbopack_context__.s([
+    "default",
+    ()=>Loading
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+;
+function Loading() {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        children: "Loading..."
+    }, void 0, false, {
+        fileName: "[project]/app/todo/loading.tsx",
+        lineNumber: 5,
+        columnNumber: 9
+    }, this);
+} /*
+In Next.js (App Router), 
+adding a loading.tsx file next to your page (or inside a route segment) automatically enables route-level loading UI during Server-Side Rendering (SSR) → Client hydration and also when navigating between routes.
+*/ 
+_c = Loading;
+var _c;
+__turbopack_context__.k.register(_c, "Loading");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
 "[project]/app/todo/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 // Todo UI
-__turbopack_context__.s([
+/*
+Marked "use client" at top → ensures isolated hydration.
+No server–client mismatch, because Home renders only static markup and <Todo /> hydrates separately.
+*/ __turbopack_context__.s([
     "default",
     ()=>Todo
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$todo$2f$loading$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/todo/loading.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 function Todo() {
     _s();
@@ -19,17 +53,24 @@ function Todo() {
     const [newTitle, setNewTitle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [editId, setEditId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [editTitle, setEditTitle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     // Fetch todo
     async function fetchTodos() {
         const res = await fetch("/api/todos");
         const data = await res.json();
         setTodos(data);
+        setLoading(false);
     }
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Todo.useEffect": ()=>{
             fetchTodos();
         }
     }["Todo.useEffect"], []);
+    if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$todo$2f$loading$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+        fileName: "[project]/app/todo/page.tsx",
+        lineNumber: 39,
+        columnNumber: 25
+    }, this);
     // Create todo
     async function addTodo() {
         if (!newTitle.trim()) return;
@@ -76,7 +117,7 @@ function Todo() {
                 children: "📝 Todo List"
             }, void 0, false, {
                 fileName: "[project]/app/todo/page.tsx",
-                lineNumber: 69,
+                lineNumber: 79,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -88,7 +129,7 @@ function Todo() {
                         placeholder: "New task..."
                     }, void 0, false, {
                         fileName: "[project]/app/todo/page.tsx",
-                        lineNumber: 73,
+                        lineNumber: 83,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -97,13 +138,13 @@ function Todo() {
                         children: "Add"
                     }, void 0, false, {
                         fileName: "[project]/app/todo/page.tsx",
-                        lineNumber: 74,
+                        lineNumber: 84,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/todo/page.tsx",
-                lineNumber: 72,
+                lineNumber: 82,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -116,7 +157,7 @@ function Todo() {
                                     onChange: (e)=>setEditTitle(e.target.value)
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 87,
+                                    lineNumber: 97,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -125,7 +166,7 @@ function Todo() {
                                     children: "Save"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 88,
+                                    lineNumber: 98,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -134,7 +175,7 @@ function Todo() {
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 89,
+                                    lineNumber: 99,
                                     columnNumber: 41
                                 }, this)
                             ]
@@ -144,7 +185,7 @@ function Todo() {
                                     children: todo.title
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 95,
+                                    lineNumber: 105,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -156,7 +197,7 @@ function Todo() {
                                     children: "Edit"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 96,
+                                    lineNumber: 106,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -165,147 +206,35 @@ function Todo() {
                                     children: "Delete"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 101,
+                                    lineNumber: 111,
                                     columnNumber: 41
                                 }, this)
                             ]
                         }, void 0, true)
                     }, todo.id, false, {
                         fileName: "[project]/app/todo/page.tsx",
-                        lineNumber: 81,
+                        lineNumber: 91,
                         columnNumber: 29
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/app/todo/page.tsx",
-                lineNumber: 78,
+                lineNumber: 88,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/todo/page.tsx",
-        lineNumber: 68,
+        lineNumber: 78,
         columnNumber: 9
     }, this);
 }
-_s(Todo, "ntNLHFom8ZZLjirELCkfgopRVOs=");
+_s(Todo, "NLwtzjc3O75TEqrL9z5lw/OdFoM=");
 _c = Todo;
 var _c;
 __turbopack_context__.k.register(_c, "Todo");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
-}),
-"[project]/node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-bailout-to-csr.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "BailoutToCSR", {
-    enumerable: true,
-    get: function() {
-        return BailoutToCSR;
-    }
-});
-const _bailouttocsr = __turbopack_context__.r("[project]/node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js [app-client] (ecmascript)");
-function BailoutToCSR(param) {
-    let { reason, children } = param;
-    if (typeof window === 'undefined') {
-        throw Object.defineProperty(new _bailouttocsr.BailoutToCSRError(reason), "__NEXT_ERROR_CODE", {
-            value: "E394",
-            enumerable: false,
-            configurable: true
-        });
-    }
-    return children;
-} //# sourceMappingURL=dynamic-bailout-to-csr.js.map
-}),
-"[project]/node_modules/next/dist/shared/lib/encode-uri-path.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "encodeURIPath", {
-    enumerable: true,
-    get: function() {
-        return encodeURIPath;
-    }
-});
-function encodeURIPath(file) {
-    return file.split('/').map((p)=>encodeURIComponent(p)).join('/');
-} //# sourceMappingURL=encode-uri-path.js.map
-}),
-"[project]/node_modules/next/dist/shared/lib/lazy-dynamic/preload-chunks.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
-"use strict";
-
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
-'use client';
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "PreloadChunks", {
-    enumerable: true,
-    get: function() {
-        return PreloadChunks;
-    }
-});
-const _jsxruntime = __turbopack_context__.r("[project]/node_modules/next/dist/compiled/react/jsx-runtime.js [app-client] (ecmascript)");
-const _reactdom = __turbopack_context__.r("[project]/node_modules/next/dist/compiled/react-dom/index.js [app-client] (ecmascript)");
-const _workasyncstorageexternal = __turbopack_context__.r("[project]/node_modules/next/dist/server/app-render/work-async-storage.external.js [app-client] (ecmascript)");
-const _encodeuripath = __turbopack_context__.r("[project]/node_modules/next/dist/shared/lib/encode-uri-path.js [app-client] (ecmascript)");
-function PreloadChunks(param) {
-    let { moduleIds } = param;
-    // Early return in client compilation and only load requestStore on server side
-    if (typeof window !== 'undefined') {
-        return null;
-    }
-    const workStore = _workasyncstorageexternal.workAsyncStorage.getStore();
-    if (workStore === undefined) {
-        return null;
-    }
-    const allFiles = [];
-    // Search the current dynamic call unique key id in react loadable manifest,
-    // and find the corresponding CSS files to preload
-    if (workStore.reactLoadableManifest && moduleIds) {
-        const manifest = workStore.reactLoadableManifest;
-        for (const key of moduleIds){
-            if (!manifest[key]) continue;
-            const chunks = manifest[key].files;
-            allFiles.push(...chunks);
-        }
-    }
-    if (allFiles.length === 0) {
-        return null;
-    }
-    const dplId = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : '';
-    return /*#__PURE__*/ (0, _jsxruntime.jsx)(_jsxruntime.Fragment, {
-        children: allFiles.map((chunk)=>{
-            const href = workStore.assetPrefix + "/_next/" + (0, _encodeuripath.encodeURIPath)(chunk) + dplId;
-            const isCss = chunk.endsWith('.css');
-            // If it's stylesheet we use `precedence` o help hoist with React Float.
-            // For stylesheets we actually need to render the CSS because nothing else is going to do it so it needs to be part of the component tree.
-            // The `preload` for stylesheet is not optional.
-            if (isCss) {
-                return /*#__PURE__*/ (0, _jsxruntime.jsx)("link", {
-                    // @ts-ignore
-                    precedence: "dynamic",
-                    href: href,
-                    rel: "stylesheet",
-                    as: "style"
-                }, chunk);
-            } else {
-                // If it's script we use ReactDOM.preload to preload the resources
-                (0, _reactdom.preload)(href, {
-                    as: 'script',
-                    fetchPriority: 'low'
-                });
-                return null;
-            }
-        })
-    });
-} //# sourceMappingURL=preload-chunks.js.map
 }),
 "[project]/node_modules/next/dist/compiled/react/cjs/react-jsx-dev-runtime.development.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
 "use strict";
@@ -525,4 +454,4 @@ else {
 }),
 ]);
 
-//# sourceMappingURL=_4ffb0dff._.js.map
+//# sourceMappingURL=_92a94e25._.js.map

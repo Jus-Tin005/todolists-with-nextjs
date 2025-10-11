@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///home/khuntunlar/todolists-with-nextjs/app/page.tsx"],"sourcesContent":["import dynamic from \"next/dynamic\";\n// import Todo from \"\";\n// const Todo = dynamic(()=>import('./todo/page'),{ssr:false});\nconst Todo = dynamic(() => import(\"./todo/page\"), { ssr: false });\nexport default function Home() {\n  return (\n    <div>\n      <Todo/>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAA;;;;AACA,uBAAuB;AACvB,+DAA+D;AAC/D,MAAM,OAAO,IAAA,0KAAO,EAAC;;;;;;IAA+B,KAAK;;AAC1C,SAAS;IACtB,qBACE,8OAAC;kBACC,cAAA,8OAAC;;;;;;;;;;AAGP","debugId":null}}]
-}

@@ -1,8 +1,14 @@
 
 // Todo UI
 
+/*
+Marked "use client" at top → ensures isolated hydration.
+No server–client mismatch, because Home renders only static markup and <Todo /> hydrates separately.
+*/
+
 "use client"
 import { useEffect,useState } from "react";
+import Loading from "./loading";
 
 interface Todo{
     id:number;
@@ -15,6 +21,7 @@ export default function Todo(){
     const [newTitle,setNewTitle] = useState("");
     const [editId,setEditId] = useState<number|null>(null);
     const [editTitle,setEditTitle] = useState("");
+    const [loading,setLoading] = useState(true);
 
 
     // Fetch todo
@@ -22,17 +29,21 @@ export default function Todo(){
         const res = await fetch("/api/todos");
         const data = await res.json();
         setTodos(data);    
+        setLoading(false);
     }
 
     useEffect(()=>{
         fetchTodos();
     },[]);
 
+    // if(loading) return (<Loading/>);
+
 
 
     // Create todo
     async function addTodo(){
         if(!newTitle.trim()) return; 
+        
         await fetch("/api/todos",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
