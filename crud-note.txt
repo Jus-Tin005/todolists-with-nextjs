@@ -1,0 +1,177 @@
+
+
+
+
+=> Setup PostgreSQL
+sudo apt update
+sudo apt install postgresql postgresql-contrib -y
+sudo systemctl status postgresql
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+
+= Create a PostgreSQL User & Database
+sudo -i -u postgres
+psql
+
+= Then
+-- Create user
+CREATE USER khuntunlar WITH PASSWORD 'khuntunlar2024';
+
+-- Create database
+CREATE DATABASE nextdb OWNER khuntunlar;
+
+-- Give privileges
+GRANT ALL PRIVILEGES ON DATABASE nextdb TO khuntunlar;
+
+= Then
+\q
+
+
+-------------------------------------------------
+
+= Create Next.js Project
+npx create-next-app@latest next-postgres-todo
+cd next-postgres-todo
+
+= Install Prisma + PostgreSQL Client
+npm install @prisma/client
+npm install -D prisma
+
+= Initialize Prisma
+npx prisma init
+
+= .env config
+DATABASE_URL="postgresql://khuntunlar:khuntunlar2024@localhost:5432/nextdb"
+
+
+= Define Schema in prisma/schema.prisma:
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Todo {
+  id        Int      @id @default(autoincrement())
+  title     String
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+
+= Then run migration:
+npx prisma migrate dev --name init
+
+= Then Run Project 
+npm run dev
+(or)
+npx tsx script.ts
+
+
+= Verify Connection
+psql -h localhost -U khuntunlar -d nextdb
+
+
+=> postress DB 
+ps aux | grep postgres
+PGPASSWORD=khuntunlar2024 psql -h localhost -U khuntunlar -d nextjs_crud -c "SELECT version();"
+
+-------------------------------------------------
+=> Use the Shadow Database URL
+
+= .env file 
+DATABASE_URL="postgresql://khuntunlar:todolist2020@localhost:5432/nextjs_crud"
+SHADOW_DATABASE_URL="postgresql://khuntunlar:todolist2020@localhost:5432/nextjs_crud_shadow"
+
+= Then 
+psql -U khuntunlar -d postgres -h localhost -W
+
+= In psql 
+CREATE DATABASE nextdb_shadow OWNER khuntunlar;
+\q
+
+-------------------------------------------------
+= Prisma Studio
+npx prisma studio
+-------------------------------------------------
+=> Modify DB 
+= From
+id        | integer (auto increment)
+title     | text
+completed | boolean
+createdAt | timestamp
+
+
+
+= To 
+model Todo {
+  id        String   @id @default(uuid())
+  text      String
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+}
+
+
+=> Query Steps 
+
+= Enable UUID generation
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
+= Add a temporary UUID column
+ALTER TABLE "Todo" ADD COLUMN "new_id" uuid DEFAULT gen_random_uuid();
+
+= Update data(Each row now automatically gets a UUID in new_id)
+SELECT id, new_id FROM "Todo";
+
+= Drop old primary key and column
+ALTER TABLE "Todo" DROP CONSTRAINT "Todo_pkey";
+ALTER TABLE "Todo" DROP COLUMN "id";
+
+= Rename new column and make it primary key
+ALTER TABLE "Todo" RENAME COLUMN "new_id" TO "id";
+ALTER TABLE "Todo" ADD PRIMARY KEY ("id");
+
+
+= Rename the `title` column to `text`
+ALTER TABLE "Todo" RENAME COLUMN "title" TO "text";
+
+= Add the missing `updateAt` column with auto-update behavior
+ALTER TABLE "Todo" ADD COLUMN "updateAt" timestamp DEFAULT now();
+
+= Optional: if you want it to automatically update on row change (PostgreSQL doesn’t support triggers like @updatedAt natively) 
+  You can simulate it via a trigger:
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+   NEW."updateAt" = now();
+   RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+CREATE TRIGGER update_todo_updated_at
+BEFORE UPDATE ON "Todo"
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();
+
+
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+-------------------------------------------------
+
+
+
+

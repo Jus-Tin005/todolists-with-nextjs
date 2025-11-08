@@ -33,6 +33,7 @@ export default function Todo(){
     }
 
     useEffect(()=>{
+        console.log(todos);
         fetchTodos();
     },[]);
 

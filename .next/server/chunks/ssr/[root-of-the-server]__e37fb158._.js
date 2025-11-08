@@ -35,6 +35,7 @@ function Todo() {
         setLoading(false);
     }
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        console.log(todos);
         fetchTodos();
     }, []);
     // if(loading) return (<Loading/>);
@@ -84,7 +85,7 @@ function Todo() {
                 children: "📝 Todo List"
             }, void 0, false, {
                 fileName: "[project]/app/todo/page.tsx",
-                lineNumber: 80,
+                lineNumber: 81,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -96,7 +97,7 @@ function Todo() {
                         placeholder: "New task..."
                     }, void 0, false, {
                         fileName: "[project]/app/todo/page.tsx",
-                        lineNumber: 84,
+                        lineNumber: 85,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -105,13 +106,13 @@ function Todo() {
                         children: "Add"
                     }, void 0, false, {
                         fileName: "[project]/app/todo/page.tsx",
-                        lineNumber: 85,
+                        lineNumber: 86,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/todo/page.tsx",
-                lineNumber: 83,
+                lineNumber: 84,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -124,7 +125,7 @@ function Todo() {
                                     onChange: (e)=>setEditTitle(e.target.value)
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 98,
+                                    lineNumber: 99,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -133,7 +134,7 @@ function Todo() {
                                     children: "Save"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 99,
+                                    lineNumber: 100,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -142,7 +143,7 @@ function Todo() {
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 100,
+                                    lineNumber: 101,
                                     columnNumber: 41
                                 }, this)
                             ]
@@ -152,7 +153,7 @@ function Todo() {
                                     children: todo.title
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 106,
+                                    lineNumber: 107,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -164,7 +165,7 @@ function Todo() {
                                     children: "Edit"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 107,
+                                    lineNumber: 108,
                                     columnNumber: 41
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -173,25 +174,25 @@ function Todo() {
                                     children: "Delete"
                                 }, void 0, false, {
                                     fileName: "[project]/app/todo/page.tsx",
-                                    lineNumber: 112,
+                                    lineNumber: 113,
                                     columnNumber: 41
                                 }, this)
                             ]
                         }, void 0, true)
                     }, todo.id, false, {
                         fileName: "[project]/app/todo/page.tsx",
-                        lineNumber: 92,
+                        lineNumber: 93,
                         columnNumber: 29
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/app/todo/page.tsx",
-                lineNumber: 89,
+                lineNumber: 90,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/todo/page.tsx",
-        lineNumber: 79,
+        lineNumber: 80,
         columnNumber: 9
     }, this);
 }
