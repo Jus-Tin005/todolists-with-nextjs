@@ -1,9 +1,8 @@
 // GET one, PUT update, DELETE
 
 
+import {prisma} from '@/lib/prisma';
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-// import { Param } from "@prisma/client/runtime/library";
 
 interface Params{
     params:{id:string};
@@ -11,12 +10,28 @@ interface Params{
 
 // GET single todo 
 export async function GET(_:Request,{ params }:Params){
-    const todo = await prisma.todo.findUnique({
-        where:{id:Number(params.id)},
-    });
+    try{
+            const todo = await prisma.todo.findUnique({
+                where:{id:Number(params.id)},
+            });
 
-    if(!todo) return NextResponse.json({error:"Not Found"},{status:404});
-    return NextResponse.json(todo);
+            if(!todo) return NextResponse.json({
+                success:false,
+                status:404,
+                error:"Not Found"
+            });
+            return NextResponse.json({
+                success:true,
+                status:200,
+                data:todo
+            });
+    }catch(err){
+        return NextResponse.json({
+            success:false,
+            status:500,
+            error:err
+        });
+    }
 }
 
 
@@ -28,13 +43,21 @@ export async function PUT(req:Request,{ params }:Params){
         const updated = await prisma.todo.update({
             where:{id:Number(params.id)},
             data:{
-                title:body.title,
+                text:body.text,
                 completed:body.completed
             }
         });
-        return NextResponse.json(updated);
+        return NextResponse.json({
+            success:true,
+            status:200,
+            data:updated
+        });
     }catch{
-        return NextResponse.json({error:"Not Found"},{status:404});
+        return NextResponse.json({
+            success:false,
+            status:404,
+            error:"Not Found"
+        });
     }
 }
 
@@ -45,9 +68,17 @@ export async function DELETE(_:Request,{params}:Params){
         const deleted = await prisma.todo.delete({
             where:{id:Number(params.id)},
         });
-        return NextResponse.json(deleted);
+        return NextResponse.json({
+            success:true,
+            status:200,
+            data:deleted
+        });
     }catch{
-        return NextResponse.json({error:"Not Found"},{status:404});
+        return NextResponse.json({
+            success:false,
+            status:404,
+            error:"Not Found"
+        });
     }
 }
 

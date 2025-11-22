@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
+  // output   = "../app/generated/prisma" // It cause error
 }
 
 datasource db {
@@ -17,7 +17,7 @@ datasource db {
 
 model Todo {
   id        Int      @id @default(autoincrement())
-  title     String 
+  text     String 
   completed Boolean  @default(false)
   createdAt DateTime @default(now())
 }

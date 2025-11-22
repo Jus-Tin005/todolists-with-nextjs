@@ -159,7 +159,70 @@ EXECUTE FUNCTION update_updated_at_column();
 
 
 -------------------------------------------------
+=> PrismaClientInitializationError Error 
+
+= MUST run this after ANY schema change
+npx prisma generate
+
+= Run Specific Location
+npx prisma generate --schema=prisma/schema.prisma
+
+
+= Test connection manually
+npx prisma db pull
+
+
+= Read Prisma
+cat prisma/schema.prisma
+
+
+= Test Prisma
+node -e "require('./lib/prisma').prisma.todo.findMany().then(console.log)"
+
 -------------------------------------------------
+=> Prisma CLI 
+npx prisma db null
+
+= Refrech DB
+npx prisma db push
+
+
+Usage
+  $ prisma db [command] [options]
+
+Options
+
+  -h, --help   Display this help message
+    --config   Custom path to your Prisma config file
+    --schema   Custom path to your Prisma schema
+
+Commands
+     pull   Pull the state from the database to the Prisma schema using introspection
+     push   Push the state from Prisma schema to the database during prototyping
+     seed   Seed your database
+  execute   Execute native commands to your database
+
+Examples
+
+  Run `prisma db pull`
+  $ prisma db pull
+
+  Run `prisma db push`
+  $ prisma db push
+
+  Run `prisma db seed`
+  $ prisma db seed
+
+  Run `prisma db execute`
+  $ prisma db execute
+
+
+
+= Error PrismaClientUnknownRequestError(Database trigger depends on updateAt column that no longer exists)
+1.Remove the Postgres trigger
+DROP TRIGGER update_todo_updated_at ON "Todo";
+DROP FUNCTION update_updated_at_column();
+
 -------------------------------------------------
 -------------------------------------------------
 -------------------------------------------------
